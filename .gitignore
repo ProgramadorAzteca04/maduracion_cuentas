@@ -1,0 +1,54 @@
+# Entorno virtual (venv, .venv, env)
+**/venv/
+**/.venv/
+**/env/
+**/ENV/
+
+# Python cache y archivos compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos y configuraciones de IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Archivos de configuración local (como .env)
+.env
+.env.local
+.env.dev
+.env.prod
+.secrets
+
+# Archivos de base de datos y logs
+*.db
+*.sqlite
+*.log
+logs/
+
+# Archivos generados por el usuario (como SQLite, datos temporales)
+*.sqlite3
+*.dump
+*.cache
+
+# Archivos de distribución / build
+/dist/
+/build/
+*.egg-info/
+*.egg
+
+# Archivos de Jupyter Notebook (si los usas)
+.ipynb_checkpoints/
+
+# Testing (pytest cache)
+.pytest_cache/
+.coverage
+htmlcov/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
