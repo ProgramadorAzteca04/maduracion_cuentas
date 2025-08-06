@@ -2,7 +2,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import get_settings
-from app.api.v1.endpoints import reddit_autogui
+from app.api.v1.endpoints import reddit
 settings = get_settings()
 
 # Crea las tablas en la base de datos
@@ -14,7 +14,7 @@ app = FastAPI(
 )
 
 app.include_router(
-    reddit_autogui.router,
+    reddit.router,
     prefix="/reddit",
     tags=["Reddit Automation"]
 )
