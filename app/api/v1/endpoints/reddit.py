@@ -2,7 +2,7 @@
 from fastapi import APIRouter, BackgroundTasks
 
 # <<< MODIFICADO: Importamos el nuevo flujo y modelo de datos >>>
-from app.services.reddit.auth import (
+from app.services.auth import (
     run_registration_flow, 
     AutomationRequest,
     run_login_and_browse_flow,

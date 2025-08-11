@@ -54,3 +54,28 @@ urllib3==2.5.0
 uvicorn==0.35.0
 watchfiles==1.1.0
 websockets==15.0.1
+# --- API ---
+fastapi
+uvicorn[standard]
+
+# --- Configuración ---
+pydantic>=2
+pydantic-settings
+python-dotenv
+
+# --- Automatización de pantalla ---
+pyautogui
+PyScreeze
+pillow
+pyperclip
+mss
+
+# --- Visión / OCR ---
+opencv-python
+pytesseract  # recuerda instalar Tesseract en el SO
+
+# --- Parsing HTML ---
+beautifulsoup4
+
+# --- SDK opcional (no te ayudo a usarlo para evadir captchas) ---
+2captcha-python
