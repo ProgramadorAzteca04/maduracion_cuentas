@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import get_settings
 from app.api.v1.endpoints import reddit
-from app.api.v1.endpoints import devto_autogui
+from app.api.v1.endpoints import devto
 settings = get_settings()
 
 # Crea las tablas en la base de datos
@@ -21,7 +21,7 @@ app.include_router(
 )
 
 app.include_router(
-    devto_autogui.router,
+    devto.router,
     prefix="/devto",
     tags=["devto Automation"]
 )

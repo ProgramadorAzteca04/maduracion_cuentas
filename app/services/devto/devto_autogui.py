@@ -65,12 +65,12 @@ async def login_devto(email: str, password: str):
     service = AutomationService()
     
     IMAGES = [
-        {"input": "app/img/devto/input_mail_login.png", "text": email},
-        {"input": "app/img/devto/input_pass_login2.png", "text": password},
+        {"input": get_image_abs_path("input_mail_login"), "text": email},
+        {"input": get_image_abs_path("input_pass_login2"), "text": password},
     ]
     
     locator_login = ElementLocator(
-        images=['app/img/devto/log_in_account.png', 'app/img/devto/log_in_account2.png']
+        images=[get_image_abs_path("log_in_account"), get_image_abs_path("log_in_account2")]
     )
     logging.info("Buscando botón de login...")
     service.find_and_click_humanly(locator_login)
@@ -84,27 +84,29 @@ async def login_devto(email: str, password: str):
             return {"success": False, "error": f"No se pudo completar el campo {image['input']}"}
         time.sleep(TEMPO_ESPERA)
 
-    if not click_button("app/img/devto/button_login.png"):
+    if not click_button(get_image_abs_path("button_login")):
         return {"success": False, "error": "No se pudo hacer clic en el botón de inicio de sesión"}
 
     return {"success": True}
 
 # Función principal para desloguearse en dev.to
 async def logout_devto(tabs_num):
+
+    logo = wait_for_elements(get_image_abs_path("button_ini"))
     navigate_tabs_on_page(tabs_num)
     pyautogui.press('enter')
     time.sleep(TEMPO_ESPERA)
 
-    if not click_button("app/img/devto/button_sign_out.png"):
+    if not click_button(get_image_abs_path("button_sign_out")):
         return {"success": False, "error": "No se pudo hacer clic en el botón 'Log Out'"}
     
     time.sleep(TEMPO_ESPERA)
-    
-    if not click_button("app/img/devto/button_sign_out_confirm.png"):
+
+    if not click_button(get_image_abs_path("button_sign_out_confirm")):
         return {"success": False, "error": "No se pudo hacer clic en el botón 'Confirmar Log Out'"}
 
     logging.info("Cierre de sesión completado exitosamente.")
-    pyautogui.hotkey('alt', 'f4')
+    pyautogui.hotkey('ctrl', 'w')
     time.sleep(TEMPO_ESPERA)
 
     return {"success": True}
@@ -115,9 +117,9 @@ async def interaction_devto(email: str, password: str, path_url: str):
     try:
         active_window = open_and_focus_window("DEV Community", path_url)
 
-        close_translate_popup('app/img/devto/translate_google2.png')
+        close_translate_popup(get_image_abs_path("translate_google2"))
 
-        if not click_button("app/img/devto/close_adversiting.png"):
+        if not click_button(get_image_abs_path("close_adversiting")):
             return {"success": False, "error": "No se encontró el botón 'Cerrar Publicidad'"}
 
         await login_devto(email, password)
@@ -125,7 +127,7 @@ async def interaction_devto(email: str, password: str, path_url: str):
         time.sleep(TEMPO_ESPERA)
 
         locator_notify = ElementLocator(
-            images=['app/img/devto/button_notify.png', 'app/img/devto/button_notify2.png']
+            images=[get_image_abs_path("button_notify"), get_image_abs_path("button_notify2")]
         )
         logging.info("Buscando botón de notificaciones...")
         service.find_and_click_humanly(locator_notify)
@@ -138,12 +140,12 @@ async def interaction_devto(email: str, password: str, path_url: str):
 
         logging.info("Navegando a la sección de desafíos...")
         locator_Initial = ElementLocator(
-            images=['app/img/devto/button_ini.png']
+            images=[get_image_abs_path("button_ini")]
         )
         service.find_and_click_humanly(locator_Initial)
 
         locator_challenge = ElementLocator(
-            images=['app/img/devto/button_dev_challenge.png']
+            images=[get_image_abs_path("button_dev_challenge")]
         )
         service.find_and_click_humanly(locator_challenge)
 
@@ -155,11 +157,11 @@ async def interaction_devto(email: str, password: str, path_url: str):
 
         mover_a_posicion_aleatoria()
 
-        face_icon = wait_for_elements("app/img/devto/link_facebook.png")
+        face_icon = wait_for_elements(get_image_abs_path("link_facebook"))
         logging.info(f'👤 Icono de Facebook encontrado: {face_icon}')
         service._move_mouse_humanly(face_icon.x, face_icon.y)
 
-        act_discussion = wait_for_elements(["app/img/devto/active_discussions.png", "app/img/devto/discuss.png"])
+        act_discussion = wait_for_elements([get_image_abs_path("active_discussions"), get_image_abs_path("discuss")])
         logging.info(f'💬 Icono de discusiones activas encontrado: {act_discussion}')
         service._move_mouse_humanly(act_discussion.x, act_discussion.y)
 
